@@ -464,7 +464,7 @@ pub struct DiskUsage {
 /// Enum describing the different status of a process.
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ProcessStatus {
-    /// ## Linux
+    /// ## Linux/FreeBSD
     ///
     /// Waiting in uninterruptible disk sleep.
     ///
@@ -478,7 +478,7 @@ pub enum ProcessStatus {
     Idle,
     /// Running.
     Run,
-    /// ## Linux
+    /// ## Linux/FreeBSD
     ///
     /// Sleeping in an interruptible waiting.
     ///
@@ -490,7 +490,7 @@ pub enum ProcessStatus {
     ///
     /// Not available.
     Sleep,
-    /// ## Linux
+    /// ## Linux/FreeBSD
     ///
     /// Stopped (on a signal) or (before Linux 2.6.33) trace stopped.
     ///
@@ -502,13 +502,9 @@ pub enum ProcessStatus {
     ///
     /// Not available.
     Stop,
-    /// ## Linux
+    /// ## Linux/FreeBSD/macOS
     ///
     /// Zombie process. Terminated but not reaped by its parent.
-    ///
-    /// ## macOS
-    ///
-    /// Awaiting collection by parent.
     ///
     /// ## Other OS
     ///
@@ -522,7 +518,7 @@ pub enum ProcessStatus {
     ///
     /// Not available.
     Tracing,
-    /// ## Linux
+    /// ## Linux/FreeBSD
     ///
     /// Dead/uninterruptible sleep (usually IO).
     ///
@@ -554,6 +550,14 @@ pub enum ProcessStatus {
     ///
     /// Not available.
     Parked,
+    /// ## FreeBSD
+    ///
+    /// Blocked on a lock.
+    ///
+    /// ## Other OS
+    ///
+    /// Not available.
+    LockBlocked,
     /// Unknown.
     Unknown(u32),
 }

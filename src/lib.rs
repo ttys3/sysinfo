@@ -50,6 +50,14 @@ cfg_if::cfg_if! {
     } else if #[cfg(any(target_os = "linux", target_os = "android"))] {
         mod linux;
         use linux as sys;
+        pub(crate) mod users;
+
+        #[cfg(test)]
+        pub(crate) const MIN_USERS: usize = 1;
+    } else if #[cfg(target_os = "freebsd")] {
+        mod freebsd;
+        use freebsd as sys;
+        pub(crate) mod users;
 
         #[cfg(test)]
         pub(crate) const MIN_USERS: usize = 1;
