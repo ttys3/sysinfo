@@ -287,7 +287,7 @@ impl SystemExt for System {
             boot_time: boot_time(),
         };
         if !refreshes.cpu() {
-            s.refresh_processors(None); // We need the processors to be filled.
+            s.refresh_processors(Some(1)); // Only fill the globals and skip call get_cpu_frequency()
         }
         s.refresh_specifics(refreshes);
         s
